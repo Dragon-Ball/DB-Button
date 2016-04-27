@@ -19,6 +19,7 @@ export default class Button extends Component {
     icon: number;
     value: string;
     style: any;
+    disabled: bool;
     size: 'lg' | 'sm' | 'norm';
     onPress: () => void;
   }
@@ -26,7 +27,8 @@ export default class Button extends Component {
   static defaultProps = {
       type: SECONDARY,
       value: '按钮',
-      size: 'norm'
+      size: 'norm',
+      disabled: false
   }
 
   getContainerStyle(size){
@@ -40,7 +42,7 @@ export default class Button extends Component {
   }
 
   render() {
-    const {value , size, type } = this.props;
+    const {value , size, type , disabled} = this.props;
     let icon;
     if (this.props.icon) {
       icon = <Image source={this.props.icon} style={styles.icon} />;
@@ -48,9 +50,10 @@ export default class Button extends Component {
 
     let buttonStyle = styles[`${type}Button`];
     let textStyle = styles[`${type}Text`];
-
+    let disabledStyle = disabled ? styles['buttonDisabled'] : {};
+    //let handlePress = disabled ? this.props.onPress : () => {};
     let content = (
-      <View style={[styles.button, buttonStyle ]}>
+      <View style={[contentStyle,styles.button, buttonStyle , disabledStyle]}>
         {icon}
         <Text style={[styles.text, textStyle]}>
           {value}
@@ -61,8 +64,9 @@ export default class Button extends Component {
     let contentStyle = this.getContainerStyle(size);
     return (
       <TouchableOpacity
+        disabled = {this.props.disabled }
         accessibilityTraits="button"
-        onPress={this.props.onPress}
+        onPress={ this.props.onPress }
         activeOpacity={0.8}
         style={[contentStyle,this.props.style]}>
         {content}
@@ -93,6 +97,9 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 16,
+  },
+  buttonDisabled:{
+    opacity:0.5
   },
   primaryButton: {
     backgroundColor: COLORS.PRIMARY

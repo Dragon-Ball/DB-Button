@@ -13,38 +13,42 @@ import React , {
 } from 'react-native';
 import Button from './src/';
 
+class Example extends Component {
+  props : {
+    title: string
+  }
+  render (){
+    return (
+      <View style={styles.group}>
+        <View style={[styles.title]}>
+          <Text style={styles.titleText}>{this.props.title}</Text>
+        </View>
+        <View style={styles.body}>
+          {this.props.children}
+        </View>
+     </View>);
+  }
+}
+
 class DBButton extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.group}>
-          <View style={[styles.title]}>
-            <Text style={styles.titleText}>按钮类型</Text>
-          </View>
-          <View style={[styles.body]}>
+        <Example title="按钮类型">
           <Button value="主按钮" type="primary" />
           <Button value="次按钮" />
-          </View>
-        </View>
-        <View style={styles.group}>
-          <View style={[styles.title]}>
-            <Text style={styles.titleText}>按钮大小</Text>
-          </View>
-          <View style={[styles.body]}>
-            <Button value="大号按钮" size="lg"/>
-            <Button value="默认按钮" />
-            <Button value="小号按钮" size="sm"/>
-          </View>
-        </View>
-        <View style={styles.group}>
-          <View style={[styles.title]}>
-            <Text style={styles.titleText}>按钮状态</Text>
-          </View>
-          <View style={[styles.body]}>
-            <Button value="启用" />
-            <Button value="禁用" />
-          </View>
-        </View>
+        </Example>
+        <Example title="按钮大小">
+          <Button value="大号按钮" size="lg"/>
+          <Button value="默认按钮" />
+          <Button value="小号按钮" size="sm"/>
+        </Example>
+        <Example title="按钮状态">
+          <Button value="启用" type="primary"  />
+          <Button value="禁用" disabled type="primary" />
+          <Button value="启用" />
+          <Button value="禁用" disabled />
+        </Example>
       </View>
     );
   }
