@@ -1,0 +1,16 @@
+{
+  "name": "DBButton",
+  "description": "几个常用的按钮",
+  "version": "0.0.1",
+  "private": true,
+  "author": "lmm0591 <lmm0591@qq.com>",
+  "license": "ISC",
+  "homepage": "https://github.com/Dragon-Ball/DB-Button#readme",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "react": "^0.14.8",
+    "react-native": "^0.24.1"
+  }
+}
