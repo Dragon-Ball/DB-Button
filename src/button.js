@@ -16,7 +16,7 @@ const PRIMARY = 'primary';
 export default class Button extends Component {
   props: {
     type: SECONDARY | PRIMARY ;
-    icon: number;
+    resource : any;
     value: string;
     style: any;
     disabled: bool;
@@ -42,10 +42,10 @@ export default class Button extends Component {
   }
 
   render() {
-    const {value , size, type , disabled} = this.props;
-    let icon;
-    if (this.props.icon) {
-      icon = <Image source={this.props.icon} style={styles.icon} />;
+    const {value , size, type , disabled , resource } = this.props;
+    let iconTag;
+    if (resource) {
+      iconTag = <Image source={resource} style={ styles.icon} />;
     }
 
     let buttonStyle = styles[`${type}Button`];
@@ -54,7 +54,7 @@ export default class Button extends Component {
     //let handlePress = disabled ? this.props.onPress : () => {};
     let content = (
       <View style={[contentStyle,styles.button, buttonStyle , disabledStyle]}>
-        {icon}
+        {iconTag}
         <Text style={[styles.text, textStyle]}>
           {value}
         </Text>
@@ -108,7 +108,9 @@ var styles = StyleSheet.create({
     backgroundColor: COLORS.SECONDARY
   },
   icon: {
-    marginRight: 12,
+    marginRight:4,
+    width: 14,
+    height: 14,
   },
   text:{
     letterSpacing: 1,

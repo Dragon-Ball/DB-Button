@@ -13,6 +13,8 @@ import React , {
 } from 'react-native';
 import Button from './src/';
 
+
+
 class Example extends Component {
   props : {
     title: string
@@ -39,7 +41,7 @@ class DBButton extends Component {
           <Button value="次按钮" />
         </Example>
         <Example title="按钮大小">
-          <Button value="大号按钮" size="lg"/>
+          <Button value="大号按钮" size="lg" />
           <Button value="默认按钮" />
           <Button value="小号按钮" size="sm"/>
         </Example>
@@ -48,6 +50,12 @@ class DBButton extends Component {
           <Button value="禁用" disabled type="primary" />
           <Button value="启用" />
           <Button value="禁用" disabled />
+        </Example>
+        <Example title="带图标（图片）">
+          <Button value="返回" type="primary" resource={require('./static/imgs/back_white.png')}  />
+          <Button value="返回" disabled type="primary" resource={require('./static/imgs/back_white.png')} />
+          <Button value="返回" resource={require('./static/imgs/back.png')} />
+          <Button value="返回" disabled resource={require('./static/imgs/back.png')} />
         </Example>
       </View>
     );
